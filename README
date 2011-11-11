@@ -1,0 +1,35 @@
+
+■ インストール方法
+
+1. 1tex.ini を $TEXMF/tex/latex/config に配置する。
+   (この $TEXMF は $TEXMFLOCAL でもよい。)
+2. $TEXMFMAIN/web2c/texmf.cnf の編集。(バックアップ推奨。)
+     TEXINPUTS = ...
+   の直前に
+     TEXINPUTS.1tex = ...
+   の行を挿入する。ここで右辺の値は
+     TEXINPUTS.latex = ...
+   の右辺にあるものと同じにする。
+3. $TEXMFMAIN/web2c/fmtutil.cnf の編集。(バックアップ推奨。)
+   最後に以下の行を追記する。
+     1tex pdftex language.dat --etex --translate-file=cp227.tcx 1tex.ini
+4. 実行ファイル 1tex を pdftex へのリンクとして作成する。
+   W32TeX の場合、実行ファイルを収めたディレクトリ($TEXMFMAIN/../bin)
+   の中で、pdftex.exe のコピー(或いはハードリンク、ソフトリンク)として
+   1tex.exe を作成する。
+5. fmtutil コマンドを実行する。
+   fmtutil --byfmt 1tex
+6. 以上により、1tex で 1tex フォーマットの pdfTeX が起動する。
+   (例えば 1tex sample.tex のように起動する。)
+
+■ アンインストール方法
+
+1. 「インストール方法」の 1 ～ 4 で行った操作を元に戻す。
+2. どこかの $TEXMF の下のどこかにある 1tex.fmt を探して削除する。
+   (W32TeX の場合、$TEXMFMAIN/web2c/pdftex 以下にあった。)
+
+■ 使用方法は以下を参照
+
+「マクロツイーター」2011-11-11 「1 から始める TeX」
+http://d.hatena.ne.jp/zrbabbler/20111111
+
